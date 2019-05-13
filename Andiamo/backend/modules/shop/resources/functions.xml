@@ -28,4 +28,8 @@
         <name>redirect</name>
         <uri>redirect</uri>
     </function>
+    <function>
+        <name>list_search</name>
+        <uri>list_search</uri>
+    </function>
 </functions>

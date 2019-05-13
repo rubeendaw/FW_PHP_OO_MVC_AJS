@@ -21,7 +21,7 @@ if (PRODUCTION) { //estamos en producción
 ob_start();
 session_start();
 $_SESSION['module'] = "";
-// $_POST = json_decode(file_get_contents('php://input'), true);
+$_POST = json_decode(file_get_contents('php://input'), true);
 
 function handlerRouter() {
     if (!empty($_GET['module'])) {
@@ -39,6 +39,9 @@ function handlerRouter() {
 }
 
 function handlerModule($URI_module, $URI_function) {
+    // echo '<script>';
+    // echo 'console.log('. json_encode( $URI_function ) .')';
+    // echo '</script>';
     $modules = simplexml_load_file('resources/modules.xml');
     $exist = false;
 
@@ -78,6 +81,9 @@ function handlerModule($URI_module, $URI_function) {
 }
 
 function handlerFunction($module, $obj, $URI_function) {
+    // echo '<script>';
+    // echo 'console.log('. json_encode( $URI_function ) .')';
+    // echo '</script>';
     $functions = simplexml_load_file(MODULES_PATH . $module . "/resources/functions.xml");
     $exist = false;
 
@@ -94,7 +100,8 @@ function handlerFunction($module, $obj, $URI_function) {
         // require_once(VIEW_PATH_INC . "top_page.php");
         // require_once(VIEW_PATH_INC . "menu_no_auth.php");
         // require_once(VIEW_PATH_INC . "footer.php");
-        echo json_encode($obj['error']=404);
+        die($URI_module . ' - Controlador no encontrado');
+        // echo json_encode($obj['error']=404);
         // showErrorPage(1, "", 'HTTP/1.0 400 Bad Request', 400);
         // require_once(VIEW_PATH_INC . "footer.html");
     } else {

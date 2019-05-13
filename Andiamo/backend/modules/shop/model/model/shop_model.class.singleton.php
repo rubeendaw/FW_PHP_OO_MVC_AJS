@@ -24,6 +24,10 @@ class shop_model {
 
     public function select_travel($arrArgument) {
         return $this->bll->select_travel_BLL($arrArgument);
+    
+    }
+    public function list_search($arrArgument) {
+        return $this->bll->list_search_BLL($arrArgument);
     }
 
 }

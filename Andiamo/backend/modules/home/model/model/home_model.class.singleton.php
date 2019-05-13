@@ -33,4 +33,12 @@ class home_model {
     public function select_filter($arrArgument) {
         return $this->bll->select_filter_BLL($arrArgument);
     }
+
+    public function select_search($arrArgument) {
+        return $this->bll->select_search_BLL($arrArgument);
+    }
+
+    public function select_name($arrArgument) {
+        return $this->bll->select_name_BLL($arrArgument);
+    }
 }

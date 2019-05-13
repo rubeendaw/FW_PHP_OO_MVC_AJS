@@ -36,4 +36,12 @@ class home_bll{
     public function select_filter_BLL($arrArgument){
         return $this->dao->select_filter_DAO($this->db, $arrArgument);
       }
+
+    public function select_search_BLL($arrArgument){
+        return $this->dao->select_search_DAO($this->db, $arrArgument);
+      }
+
+    public function select_name_BLL($arrArgument){
+        return $this->dao->select_name_DAO($this->db, $arrArgument);
+      }
 }

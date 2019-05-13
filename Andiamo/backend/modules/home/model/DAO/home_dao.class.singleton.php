@@ -13,10 +13,22 @@ class home_DAO {
         return self::$_instance;
     }
 		function select_all_travels_DAO($db){
-			$sql = "SELECT * FROM travels ORDER BY likes DESC LIMIT 1 ";
+			$sql = "SELECT * FROM travels";
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
-		}
+        }
+        
+        function select_search_DAO($db,$arrArgument) {
+            $sql = "SELECT DISTINCT * FROM travels WHERE destination LIKE '%$arrArgument%'";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
+
+        function select_name_DAO($db) {
+            $sql = "SELECT DISTINCT country FROM travels";
+            $stmt = $db->ejecutar($sql);
+            return $db->listar($stmt);
+        }
 
 		function select_travel($ref){
 			$sql = "SELECT * FROM travels WHERE id='$ref'";

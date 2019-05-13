@@ -1004,3 +1004,17 @@ text-align: center;
 #lista2{
   text-align: center;
   }
+#mibusca{
+  max-width: 43%;
+  }
+#authomeb{
+  margin-top: 0%;
+  }
+#itemhome{
+    padding-right: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+#itemshome{
+  display: flex !important;
+  }

@@ -21,7 +21,7 @@
 
             case 'contact':
                 $subject = 'Tu Petición a Andiamo ha sido enviada<br>';
-                $ruta = '<a href=' . 'http://localhost/www/FW_PHP_OO_MVC_JQUERY/Andiamo/contact/view_contact/'. '>aqu&iacute;</a>';
+                $ruta = '<a href="http://'.$_SERVER['HTTP_HOST'].'/www/FW_PHP_OO_MVC_AJS/#/"' . '>aqu&iacute;</a>';
                 $body = 'Para visitar nuestra web, pulsa ' . $ruta;
             break;
 
@@ -43,7 +43,7 @@
 		$html .= "</body>";
 		$html .= "</html>";
 
-        set_error_handler('ErrorHandler');
+        // set_error_handler('ErrorHandler');
         try{
             if ($arr['type'] === 'admin')
                 $address = 'rubeendaw@gmail.com';

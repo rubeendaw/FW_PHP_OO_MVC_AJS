@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="andiamo" ng-app lang="zxx">
   <head>
     <title>Andiamo</title>
     <meta charset="utf-8">
@@ -41,16 +41,31 @@
     <link rel="stylesheet" href="Andiamo/frontend/view/assets/css/aos.css">
     
     <link rel="stylesheet" href="Andiamo/frontend/view/assets/css/style.css">
+    <link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
+    <script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="Andiamo/frontend/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.2/ui-bootstrap-tpls.min.js"></script>
+
+    <!-- Controller JS Frontend -->
+    <script src="Andiamo/frontend/modules/contact/controller/contact.controller.js"></script>
+    <script src="Andiamo/frontend/modules/home/controller/home.controller.js"></script>
+    <script src="Andiamo/frontend/modules/shop/controller/shop.controller.js"></script>
+    
+    <script src="Andiamo/frontend/apiconnector.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="<?php echo CONTACT_JS_PATH ?>controller_contact.js"></script>
+    <!-- <script src="<?php echo CONTACT_JS_PATH ?>controller_contact.js"></script>
     <script src="<?php echo SHOP_JS_PATH ?>controller_shop.js"></script>
     <script src="<?php echo HOME_JS_PATH ?>controller_home.js"></script>
-    <script src="<?php echo LOGIN_JS_PATH ?>controller_login.js"></script>
+    <script src="<?php echo LOGIN_JS_PATH ?>controller_login.js"></script> -->
   </head>
-  <body>
-
+    <body>
+      <div ng-include='"Andiamo/frontend/view/inc/menu.view.html"'></div>
+		  <div ng-view></div> 
     </body>
     <footer class="site-footer border-top">
       <div class="container">
@@ -103,33 +118,33 @@
           </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-        <script src="Andiamo/frontend/assets/js/jquery-3.3.1.min.js"></script>
-        <script src="Andiamo/frontend/assets/js/jquery-ui.js"></script>
-        <script src="Andiamo/frontend/assets/js/popper.min.js"></script>
-        <script src="Andiamo/frontend/assets/js/bootstrap.min.js"></script>
-        <script src="Andiamo/frontend/assets/js/owl.carousel.min.js"></script>
-        <script src="Andiamo/frontend/assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="Andiamo/frontend/assets/js/aos.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/jquery-3.3.1.min.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/jquery-ui.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/popper.min.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/bootstrap.min.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/owl.carousel.min.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/aos.js"></script>
     
-        <script src="Andiamo/frontend/assets/js/main.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/main.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script type="text/javascript" src="Andiamo/frontend/assets/js/datatables.min.js"></script>
-        <script type="text/javascript" src="Andiamo/frontend/assets/js/lang.js"></script>
+        <script type="text/javascript" src="Andiamo/frontend/view/assets/js/datatables.min.js"></script>
+        <script type="text/javascript" src="Andiamo/frontend/view/assets/js/lang.js"></script>
     
         <!-- <script src="module/travel/model/validate_travel.js"></script>
         <script src="module/contact/model/contact.js"></script>
         <script src="module/shop/model/shop.js"></script>
         <script src="module/home/model/home.js"></script>
         <script src="module/like/model/like.js"></script> -->
-        <script src="<?php echo TRANSLATIONS ?>lang.js"></script>
-        <script src="Andiamo/frontend/assets/js/ini.js"></script>
-        <script src="Andiamo/frontend/assets/js/jqueryTranslator.js"></script>
-        <script src="Andiamo/frontend/assets/js/dropzone.js"></script>
+        <!-- <script src="<?php echo TRANSLATIONS ?>lang.js"></script> -->
+        <script src="Andiamo/frontend/view/assets/js/ini.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/jqueryTranslator.js"></script>
+        <script src="Andiamo/frontend/view/assets/js/dropzone.js"></script>
         <!-- <script src="module/login/model/validate_login.js"></script> -->
         <!-- <script src="module/cart/model/cart.js"></script> -->
-        <script src="<?php echo PROFILE_JS_PATH ?>controller_profile.js"></script>
-        <script src="<?php echo TEST_JS_PATH ?>test.js"></script>
+        <!-- <script src="<?php echo PROFILE_JS_PATH ?>controller_profile.js"></script>
+        <script src="<?php echo TEST_JS_PATH ?>test.js"></script> -->
     
     
     

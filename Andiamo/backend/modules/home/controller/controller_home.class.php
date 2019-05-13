@@ -4,58 +4,70 @@ class controller_home {
         $_SESSION['module'] = "home";
     }
     
-    function view_home() {
-        require_once(VIEW_PATH_INC . "top_page.php");;
-        require_once(VIEW_PATH_INC . "menu_no_auth.php");
-        loadView('modules/home/view/', 'home.html');
-        require_once(VIEW_PATH_INC . "footer.php");
-    }
+    // function view_home() {
+    //     require_once(VIEW_PATH_INC . "top_page.php");;
+    //     require_once(VIEW_PATH_INC . "menu_no_auth.php");
+    //     loadView('modules/home/view/', 'home.html');
+    //     require_once(VIEW_PATH_INC . "footer.php");
+    // }
 
-    function dropdown_types(){
-        $json = array();
-        $json = loadModel(MODEL_HOME, "home_model", "select_all_type");
-        echo json_encode($json);
-    }
+    // function dropdown_types(){
+    //     $json = array();
+    //     $json = loadModel(MODEL_HOME, "home_model", "select_all_type");
+    //     echo json_encode($json);
+    // }
 
-    function dropdown_country(){
-        $json = array();
-        $json = loadModel(MODEL_HOME, "home_model", "select_all_country",$_POST['uni']);
-        echo json_encode($json);
-    }
+    // function dropdown_country(){
+    //     $json = array();
+    //     $json = loadModel(MODEL_HOME, "home_model", "select_all_country",$_POST['uni']);
+    //     echo json_encode($json);
+    // }
 
     function show_travels(){
         $json = array();
         $json = loadModel(MODEL_HOME, "home_model", "select_all_travels");
         echo json_encode($json);
     }
-    
-    function autocomplete(){
-        $arrArgument = array(
-            'types' => $_POST['types'],
-            'country' => $_POST['country'],
-            'service' => $_POST['service']
-        );
 
+    function select_search() {
         $json = array();
-        $json = loadModel(MODEL_HOME, "home_model", "select_all_destination", $arrArgument);
-        // echo json_encode($json);
-        foreach ($json as $row) {
-            echo '<div>
-                    <a class="suggest-element" data="'.$row['destination'].'" id="service'.$row['id'].'">'.utf8_encode($row['destination']).'</a>
-                </div>';
-        }
-        exit;
+        $json = loadModel(MODEL_HOME, "home_model", "select_search", $_GET['param']);
+        echo json_encode($json);
     }
+    
+    function load_names(){
+        $json = array();
+        $json = loadModel(MODEL_HOME, "home_model", "select_name");
+        echo json_encode($json);
+    }
+    
+    // function autocomplete(){
+    //     $arrArgument = array(
+    //         'types' => $_POST['types'],
+    //         'country' => $_POST['country'],
+    //         'service' => $_POST['service']
+    //     );
 
-    function redirect(){
-        $arrArgument = array(
-            'types' => $_POST['types'],
-            'country' => $_POST['country'],
-            'destination' => $_POST['destination']
-        );
-        loadModel(MODEL_HOME, "home_model", "select_filter", $arrArgument);
-        include("module/shop/view/shop.php");
-    }
+    //     $json = array();
+    //     $json = loadModel(MODEL_HOME, "home_model", "select_all_destination", $arrArgument);
+    //     // echo json_encode($json);
+    //     foreach ($json as $row) {
+    //         echo '<div>
+    //                 <a class="suggest-element" data="'.$row['destination'].'" id="service'.$row['id'].'">'.utf8_encode($row['destination']).'</a>
+    //             </div>';
+    //     }
+    //     exit;
+    // }
+
+    // function redirect(){
+    //     $arrArgument = array(
+    //         'types' => $_POST['types'],
+    //         'country' => $_POST['country'],
+    //         'destination' => $_POST['destination']
+    //     );
+    //     loadModel(MODEL_HOME, "home_model", "select_filter", $arrArgument);
+    //     include("module/shop/view/shop.php");
+    // }
 
 }
 

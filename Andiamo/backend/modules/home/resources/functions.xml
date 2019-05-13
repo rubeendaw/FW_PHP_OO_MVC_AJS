@@ -24,4 +24,12 @@
         <name>redirect</name>
         <uri>redirect</uri>
     </function>
+    <function>
+        <name>select_search</name>
+        <uri>select_search</uri>
+    </function>
+    <function>
+        <name>load_names</name>
+        <uri>load_names</uri>
+    </function>
 </functions>

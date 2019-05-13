@@ -11,6 +11,12 @@ class controller_shop {
 			require_once(VIEW_PATH_INC . "footer.php");
 	}
 
+	function list_search() {
+		$json = array();
+		$json = loadModel(MODEL_SHOP, "shop_model", "list_search",$_GET['param']);
+		echo json_encode($json);
+}
+
 	function show_travels(){
 			$json = array();
 			$json = loadModel(MODEL_SHOP, "shop_model", "select_all_travels");

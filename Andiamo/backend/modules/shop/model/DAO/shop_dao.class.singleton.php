@@ -12,6 +12,12 @@ class shop_DAO {
         }
         return self::$_instance;
     }
+
+    function list_search_DAO($db,$arrArgument) {
+        $sql = "SELECT DISTINCT * FROM travels WHERE country LIKE '%$arrArgument%'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
 		function select_all_travels_DAO($db){
 			$sql = "SELECT * FROM travels";
             $stmt = $db->ejecutar($sql);

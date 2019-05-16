@@ -44,4 +44,7 @@ class home_bll{
     public function select_name_BLL($arrArgument){
         return $this->dao->select_name_DAO($this->db, $arrArgument);
       }
+      public function active_user_BLL($arrArgument){
+        return $this->dao->active_user_DAO($this->db,$arrArgument);
+      }
 }

@@ -5,15 +5,35 @@ class controller_login {
 		include(UTILS_LOGIN . "functions_login.inc.php");
     }
 
-    public function view_login() {
-        // require_once(VIEW_PATH_INC . "header.php")
-        require_once(VIEW_PATH_INC . "top_page.php");;
-        require_once(VIEW_PATH_INC . "menu_no_auth.php");
-        loadView('modules/login/view/', 'login.html');
-        require_once(VIEW_PATH_INC . "footer.php");
+    // public function view_login() {
+    //     // require_once(VIEW_PATH_INC . "header.php")
+    //     require_once(VIEW_PATH_INC . "top_page.php");;
+    //     require_once(VIEW_PATH_INC . "menu_no_auth.php");
+    //     loadView('modules/login/view/', 'login.html');
+    //     require_once(VIEW_PATH_INC . "footer.php");
   
   
-        // require_once(VIEW_PATH_INC . "footer.html");
+    //     // require_once(VIEW_PATH_INC . "footer.html");
+    // }
+    function validate_register(){
+        $info_data = json_decode($_POST['total_data'],true);
+        $response = validate_data($info_data,'register');
+        // $token1 = generate_Token_secure(20);
+        if ($response['result']) {
+            $result['token'] = loadModel(MODEL_LOGIN, "login_model", "insert_user", $info_data);
+            if ($result) {
+                $result['type'] = 'alta';
+                $result['inputEmail'] = $info_data['remail'];
+                $result['inputMessage'] = 'Para activar tu cuenta en Andiamo pulse en el siguiente enlace';
+                $result['success'] = true;
+                enviar_email($result);
+            }
+            echo json_encode($result);
+        }else{
+            $jsondata['success'] = false;
+             $jsondata['error'] = $response['error'];
+             echo json_encode($jsondata);
+        }
     }
     
 

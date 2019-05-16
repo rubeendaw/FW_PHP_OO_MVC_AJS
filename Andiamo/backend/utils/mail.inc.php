@@ -7,11 +7,11 @@
         $return = '';
 
         switch ($arr['type']) {
-            // case 'alta':
-            //       $subject = 'Tu Alta en Ruben';
-            //     $ruta = "<a href='" . amigable("?module=login&function=activar&aux=A" . $arr['token'], true) . "'>aqu&iacute;</a>";
-            //     $body = 'Gracias por unirte a nuestra aplicaci&oacute;n<br> Para finalizar el registro, pulsa ' . $ruta;
-            //     break;
+            case 'alta':
+                $subject = 'Tu Alta en Andiamo';
+                $ruta = '<a href="http://' . $_SERVER['HTTP_HOST'] . '/www/FW_PHP_OO_MVC_AJS/#/home/active_user/'. $arr['token'] .'">aqu&iacute;</a>';
+                $body = 'Gracias por unirte a nuestra aplicaci&oacute;n<br> Para finalizar el registro, pulsa ' . $ruta;
+                break;
             //
             // case 'modificacion':
             //     $subject = 'Tu Nuevo Password en Rural_Shop<br>';

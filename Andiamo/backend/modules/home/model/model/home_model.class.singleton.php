@@ -41,4 +41,8 @@ class home_model {
     public function select_name($arrArgument) {
         return $this->bll->select_name_BLL($arrArgument);
     }
+
+    public function active_user($arrArgument){
+        return $this->bll->active_user_BLL($arrArgument);
+    }
 }

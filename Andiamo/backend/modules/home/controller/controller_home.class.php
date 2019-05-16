@@ -40,6 +40,12 @@ class controller_home {
         $json = loadModel(MODEL_HOME, "home_model", "select_name");
         echo json_encode($json);
     }
+
+    function active_user(){
+        $token = json_decode($_POST['token'],true);
+        loadModel(MODEL_HOME, "home_model", "active_user",$token['token']);
+        echo json_encode($token);
+    }
     
     // function autocomplete(){
     //     $arrArgument = array(

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <functions>
     <function>
-        <name>view_login</name>
-        <uri>view_login</uri>
+        <name>validate_register</name>
+        <uri>validate_register</uri>
     </function>
 </functions>

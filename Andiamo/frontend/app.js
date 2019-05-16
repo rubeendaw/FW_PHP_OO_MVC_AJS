@@ -12,6 +12,18 @@ andiamo.config(['$routeProvider',
 					}
         }
 		})
+		.when("/home/active_user/:token", {
+			resolve: {
+				recpass: function (services, $route) {
+					console.log($route.current.params.token);
+					return services.put('home','active_user',{'token':JSON.stringify({'token':$route.current.params.token})})
+					.then(function(response){
+						console.log(response);
+						location.href = '#/';
+					});
+				}
+			}
+		})
 		.when("/shop/:id", {
 			templateUrl: "Andiamo/frontend/modules/shop/view/shop.view.html",
 			controller: "shopFilterCtrl",
@@ -30,7 +42,14 @@ andiamo.config(['$routeProvider',
 				}
 			}
 		})
-		.when("/contact", {templateUrl: "Andiamo/frontend/modules/contact/view/contact.view.html", controller: "contactCtrl"})
+		.when("/contact", {
+			templateUrl: "Andiamo/frontend/modules/contact/view/contact.view.html", 
+			controller: "contactCtrl"
+		})
+		.when("/login", {
+			templateUrl: "Andiamo/frontend/modules/login/view/login.view.html", 
+			controller: "loginCtrl"
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

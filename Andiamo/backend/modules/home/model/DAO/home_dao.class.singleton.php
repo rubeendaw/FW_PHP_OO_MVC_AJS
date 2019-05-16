@@ -17,7 +17,12 @@ class home_DAO {
             $stmt = $db->ejecutar($sql);
             return $db->listar($stmt);
         }
-        
+
+        public function active_user_DAO($db,$arrArgument) {
+            $sql = "UPDATE users SET activate = 1 WHERE token = '$arrArgument'";
+            return $db->ejecutar($sql);
+        }
+
         function select_search_DAO($db,$arrArgument) {
             $sql = "SELECT DISTINCT * FROM travels WHERE destination LIKE '%$arrArgument%'";
             $stmt = $db->ejecutar($sql);

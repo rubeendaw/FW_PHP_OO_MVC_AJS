@@ -50,6 +50,10 @@ andiamo.config(['$routeProvider',
 			templateUrl: "Andiamo/frontend/modules/login/view/login.view.html", 
 			controller: "loginCtrl"
 		})
+		.when("/login/changepass/:token", {
+			templateUrl: "Andiamo/frontend/modules/login/view/recpass.view.html",
+			controller: "changepassCtrl"
+		})
 		.otherwise({
 			redirectTo: '/'
 		});

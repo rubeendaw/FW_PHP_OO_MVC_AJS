@@ -4,4 +4,16 @@
         <name>validate_register</name>
         <uri>validate_register</uri>
     </function>
+    <function>
+        <name>send_mail_rec</name>
+        <uri>send_mail_rec</uri>
+    </function>
+    <function>
+        <name>update_passwd</name>
+        <uri>update_passwd</uri>
+    </function>
+    <function>
+        <name>validate_login</name>
+        <uri>validate_login</uri>
+    </function>
 </functions>

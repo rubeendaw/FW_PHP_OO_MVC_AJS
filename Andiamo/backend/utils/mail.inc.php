@@ -11,7 +11,13 @@
                 $subject = 'Tu Alta en Andiamo';
                 $ruta = '<a href="http://' . $_SERVER['HTTP_HOST'] . '/www/FW_PHP_OO_MVC_AJS/#/home/active_user/'. $arr['token'] .'">aqu&iacute;</a>';
                 $body = 'Gracias por unirte a nuestra aplicaci&oacute;n<br> Para finalizar el registro, pulsa ' . $ruta;
-                break;
+            break;
+
+            case 'changepass':
+                $subject = 'Tu Nuevo Password en Andiamo';
+                $ruta = '<a href="http://' . $_SERVER['HTTP_HOST'] . '/www/FW_PHP_OO_MVC_AJS/#/login/changepass/'. $arr['token'] .'">aqu&iacute;</a>';
+                $body = 'Para recordar tu password pulsa ' . $ruta;
+            break;
             //
             // case 'modificacion':
             //     $subject = 'Tu Nuevo Password en Rural_Shop<br>';

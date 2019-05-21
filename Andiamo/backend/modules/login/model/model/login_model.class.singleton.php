@@ -17,4 +17,20 @@ class login_model {
     public function insert_user($arrArgument){
         return $this->bll->insert_user_BLL($arrArgument);
     }
+
+    public function exist_user($arrArgument){
+        return $this->bll->exist_user_BLL($arrArgument);
+    }
+
+    public function mail_to($arrArgument){
+        return $this->bll->mail_to_BLL($arrArgument);
+    }
+
+    public function update_passwd($arrArgument){
+        return $this->bll->update_passwd_BLL($arrArgument);
+    }
+
+    public function select_token($arrArgument){
+        return $this->bll->select_token_BLL($arrArgument);
+    }
 }

@@ -5,19 +5,25 @@ class controller_login {
 		include(UTILS_LOGIN . "functions_login.inc.php");
     }
 
-    // public function view_login() {
-    //     // require_once(VIEW_PATH_INC . "header.php")
-    //     require_once(VIEW_PATH_INC . "top_page.php");;
-    //     require_once(VIEW_PATH_INC . "menu_no_auth.php");
-    //     loadView('modules/login/view/', 'login.html');
-    //     require_once(VIEW_PATH_INC . "footer.php");
-  
-  
-    //     // require_once(VIEW_PATH_INC . "footer.html");
-    // }
+    function validate_login(){
+        $info_data = json_decode($_POST['total_data'],true);
+        $response = validate_data($info_data,'login');
+        if ($response['result']) {
+            $data = loadModel(MODEL_LOGIN,'login_model','select_token',$info_data['luser']);
+            $data = $data[0];
+            $data['success'] = true;
+            echo json_encode($data);
+        }else{
+            $jsondata['success'] = false;
+             $jsondata['error'] = $response['error'];
+            echo json_encode($jsondata);
+        }
+    }
+    
     function validate_register(){
         $info_data = json_decode($_POST['total_data'],true);
         $response = validate_data($info_data,'register');
+
         // $token1 = generate_Token_secure(20);
         if ($response['result']) {
             $result['token'] = loadModel(MODEL_LOGIN, "login_model", "insert_user", $info_data);
@@ -35,7 +41,41 @@ class controller_login {
              echo json_encode($jsondata);
         }
     }
+
+    function send_mail_rec(){
+        $user_rpass = json_decode($_POST['rpuser'],true);
+        $result = validate_data($user_rpass,'rec_pass');
+        if ($result['result']) {
+            $result = loadModel(MODEL_LOGIN,'login_model','mail_to',$user_rpass);
+            $result = $result[0];
+            $result['token'] = $result['token'];
+            $result['inputEmail'] = $result['email'];
+            if ($result) {
+                $result['type'] = 'changepass';
+                $result['inputMessage'] = 'Para recuperar tu contraseña pulse en el siguiente enlace';
+                enviar_email($result);
+                $result['success'] = true;
+                echo json_encode($result);
+            }else{
+                echo "error";
+            }
+        }else{
+            $jsondata['success'] = false;
+             $jsondata['error'] = $result['error'];
+            echo json_encode($jsondata);
+        }
+    }
     
+    function update_passwd(){
+        $pass_data = json_decode($_POST['rec_pass'],true);
+        if ($pass_data) {
+            $result = loadModel(MODEL_LOGIN,'login_model','update_passwd',$pass_data);
+            echo json_encode($result);
+        }else{
+            $jsondata = false;
+            echo json_encode($jsondata);	
+        }
+    }
 
 }
 

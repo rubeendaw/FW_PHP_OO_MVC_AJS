@@ -24,6 +24,17 @@ andiamo.config(['$routeProvider',
 				}
 			}
 		})
+		.when("/home/:tokenlog", {
+			resolve: {
+				function (localstorageService, $route, $timeout) {
+					localstorageService.setUsers($route.current.params.tokenlog);
+					localstorageService.setType("1");
+					$timeout( function(){
+						location.href = '#/';
+					}, 1000 );
+					}
+				}
+		})
 		.when("/shop/:id", {
 			templateUrl: "Andiamo/frontend/modules/shop/view/shop.view.html",
 			controller: "shopFilterCtrl",
@@ -54,6 +65,14 @@ andiamo.config(['$routeProvider',
 			templateUrl: "Andiamo/frontend/modules/login/view/recpass.view.html",
 			controller: "changepassCtrl"
 		})
+		.when("/profile", {
+			templateUrl: "Andiamo/frontend/modules/profile/view/profile.view.html",
+			controller: "profileCtrl"
+		})
+		// .when("/logout", {
+		// 	templateUrl: "Andiamo/frontend/modules/home/view/home.view.html",
+		// 	controller: "logoutCtrl"		
+		// })
 		.otherwise({
 			redirectTo: '/'
 		});

@@ -2,6 +2,9 @@
 //PROYECTO
 define('PROJECT', '/www/FW_PHP_OO_MVC_AJS/Andiamo/backend/');
 
+//PROYECTO PATH
+define('PROJECT_PATH', '/www/FW_PHP_OO_MVC_AJS/');
+
 // $path = $_SERVER['DOCUMENT_ROOT'] . '/www/FW_PHP_OO_MVC_JQUERY/Andiamo/';
 // define('SITE_ROOT', $path);
 
@@ -10,6 +13,9 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT);
 
 //SITE_PATH
 define('SITE_PATH', 'http://' . $_SERVER['HTTP_HOST'] . PROJECT);
+
+//SITE_PATH
+define('SITE_PATH_ANG', 'http://' . $_SERVER['HTTP_HOST'] . PROJECT_PATH);
 
 //CSS
 define('CSS_PATH', SITE_PATH . 'view/assets/css/');

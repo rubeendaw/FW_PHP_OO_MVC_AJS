@@ -33,13 +33,15 @@
         </div>
       </div>
     </div>
-    <nav class="site-navigation text-right text-md-center" role="navigation">
+    <nav class="site-navigation text-right text-md-center" ng-controller="menuCtrl" role="navigation">
       <div class="container">
         <ul class="site-menu js-clone-nav d-none d-md-block">
           <li><a href="#/">Home</a></li>
           <li><a href="#/contact">Contact</a></li>
           <li><a href="#/shop">Shop</a></li>
           <li><a href="#/login">Login</a></li>
+          <li><a href="#/profile" ng-show="profile_view" >Profile</a></li>
+          <!-- <li><a href="#/logout" ng-show="logout_view" >Logout</a></li> -->
         </ul>
       </div>
     </nav>

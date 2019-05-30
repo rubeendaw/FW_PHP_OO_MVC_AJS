@@ -111,8 +111,53 @@
 		}
 	}
 
+	require SITE_ROOT . 'modules/login/utils/auth0/vendor/autoload.php';
+	use Auth0\SDK\Auth0;
+	// require 'http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/backend/modules/login/utils/auth0/vendor/autoload.php';
+	// require __DIR__ . '/auth0/vendor/autoload.php';
+	function login_social(){
+        $domain        = 'pruebarubeendaw.eu.auth0.com';
+        $client_id     = 'jrEyobV9Ews77U7mF6Q4WoS5k2fjdU7D';
+        $client_secret = 'Z-vZEP0KKTMA_MSjdtG-0_JfWk4maiipb6rfviM8_tJs3k01BfowkNzzGbBDnRbY';
+        $redirect_uri  = 'http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/backend/index.php?module=login&function=social_datos';
+        $audience      = 'https://' . 'pruebarubeendaw.eu.auth0.com' . '/userinfo';
+
+        $auth0 = new Auth0([
+            'domain' => $domain,
+            'client_id' => $client_id,
+            'client_secret' => $client_secret,
+            'redirect_uri' => $redirect_uri,
+            'audience' => $audience,
+            'scope' => 'openid profile',
+            'persist_id_token' => true,
+            'persist_access_token' => true,
+            'persist_refresh_token' => true
+		]);
+		$auth0->login();
+	}
+	function datos_social(){	
+			$domain        = 'pruebarubeendaw.eu.auth0.com';
+			$client_id     = 'jrEyobV9Ews77U7mF6Q4WoS5k2fjdU7D';
+			$client_secret = 'Z-vZEP0KKTMA_MSjdtG-0_JfWk4maiipb6rfviM8_tJs3k01BfowkNzzGbBDnRbY';
+			$redirect_uri  = 'http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/backend/index.php?module=login&function=social_datos';
+			$audience      = 'https://' . 'pruebarubeendaw.eu.auth0.com' . '/userinfo';
+	
+			$auth0 = new Auth0([
+				'domain' => $domain,
+				'client_id' => $client_id,
+				'client_secret' => $client_secret,
+				'redirect_uri' => $redirect_uri,
+				'audience' => $audience,
+				'scope' => 'openid profile',
+				'persist_id_token' => true,
+				'persist_access_token' => true,
+				'persist_refresh_token' => true
+			]);
+		$userInfo = $auth0->getUser();
+		return $userInfo;
+	}
 	function generate_Token_secure($longitud){
-		if ($longitud < 4) {
+				if ($longitud < 4) {
 			$longitud = 4;
 		}
 		return bin2hex(openssl_random_pseudo_bytes(($longitud - ($longitud % 2)) / 2));
@@ -121,6 +166,45 @@
 	function exist_user($user){
 		return loadModel(MODEL_LOGIN,'login_model','exist_user',$user);
 	}
+
+	require_once "JWT.php";
+	function encode_jwt($user){
+		
+		$header = '{"typ":"JWT", "alg":"HS256"}';
+		$secret = 'passwordispassword';
+		
+		$payload = '{
+			"iat":'.time().'", 
+			"exp":'.time() + (60*60).'",
+			"name":'.$user.'
+		}';
+		
+		$JWT = new JWT;
+		$token = $JWT->encode($header, $payload, $secret);
+		
+		return $token;
+	}
+
+	function redirect($url){
+		die('<script>window.location.href="' . $url . '";</script>');
+	}
+	// function decode_jwt($user){
+	// 	// require_once "JWT.php";
+
+	// 	$header = '{"typ":"JWT", "alg":"HS256"}';
+	// 	$secret = 'passwordispassword';
+
+	// 	$payload = '{
+	// 		"iat":"'.time().'", 
+	// 		"exp":"'.time() + (60*60).'",
+	// 		"name":'.$user'.
+	// 	}';
+
+	// 	$JWT = new JWT;
+	// 	$json = $JWT->decode($token, $secret);
+
+	// 	return $json;
+	// }
 
 	// function validate_birth($date){
 	// 	$thisdate = getdate();

@@ -32,3 +32,18 @@ console.log(all_travels);
         }
       }
 });
+andiamo.controller('menuCtrl', function(loginService) {
+  loginService.login();
+});
+
+andiamo.controller('logoutCtrl', function($scope, loginService, toastr) {
+  $scope.logout = function(){
+    loginService.logout();
+    toastr.success('', 'Cerrando Sesion',{
+      closeButton: true
+    });
+    $timeout( function(){
+      location.href = '#/';
+    }, 2000 );
+  }
+});

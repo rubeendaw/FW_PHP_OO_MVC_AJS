@@ -5,9 +5,9 @@ function debugPHP($array) {
     echo "</pre>";
 }
 
-function redirect($url) {
-    die('<script>window.location.href="' . $url . '";</script>');
-}
+// function redirect($url) {
+//     die('<script>window.location.href="' . $url . '";</script>');
+// }
 
 function close_session() {
     $_SESSION = array(); // Destruye todas las variables de la sesión

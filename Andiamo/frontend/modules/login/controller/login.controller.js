@@ -144,7 +144,7 @@
 // 		}
 // 	});
 // });
-andiamo.controller('loginCtrl', function($scope, services, toastr, $timeout, localstorageService) {
+andiamo.controller('loginCtrl', function($scope, services, toastr, $timeout, localstorageService, loginService) {
 	$scope.submitRegister = function(){
 		var data = {'ruser':$scope.register.user,'remail':$scope.register.email,'rpasswd':$scope.register.password};
 		console.log(data);
@@ -170,30 +170,23 @@ andiamo.controller('loginCtrl', function($scope, services, toastr, $timeout, loc
 		{'total_data':JSON.stringify({'luser':$scope.login.user,'lpasswd':$scope.login.password})})
 		.then(function (response) {
 			// console.log($scope.login.user);
-			if (response.success) {
-				console.log("login");
+			if (response.result == true) {
+				console.log(response);
 					localstorageService.setUsers(response.tokenlog);
+					localstorageService.setType(response.type);
 					toastr.success('Inicio de sesion correcto', 'Perfecto',{
                     closeButton: true
                 });
-                // $timeout( function(){
-                // 	loginService.login();
-		        //     location.href = '.';
-		        // }, 3000 );
+                $timeout( function(){
+                	loginService.login();
+		            location.href = '#/';
+		        }, 3000 );
 			}else{
 				console.log(response);
-				if (response.error.luser) {
-					toastr.error(response.error.luser, 'Error',{
-	                	closeButton: true
-	            	});
-				}else if(response.error.lpasswd){
-					toastr.error(response.error.lpasswd, 'Error',{
-	                	closeButton: true
-	            	});
-				}else{
+				if(response.error){
 					toastr.error('Error', 'Error',{
-	                	closeButton: true
-	            	});
+						closeButton: true
+					});
 				}
 			}
 		});

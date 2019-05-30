@@ -18,6 +18,10 @@ class login_model {
         return $this->bll->insert_user_BLL($arrArgument);
     }
 
+    public function insert_user_social($arrArgument){
+        return $this->bll->insert_user_social_BLL($arrArgument);
+    }
+
     public function exist_user($arrArgument){
         return $this->bll->exist_user_BLL($arrArgument);
     }

@@ -16,4 +16,12 @@
         <name>validate_login</name>
         <uri>validate_login</uri>
     </function>
+    <function>
+        <name>social_login</name>
+        <uri>social_login</uri>
+    </function>
+    <function>
+        <name>social_datos</name>
+        <uri>social_datos</uri>
+    </function>
 </functions>

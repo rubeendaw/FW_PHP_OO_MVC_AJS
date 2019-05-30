@@ -20,6 +20,10 @@ class login_bll{
         return $this->dao->insert_user_DAO($this->db,$arrArgument);
     }
 
+    public function insert_user_social_BLL($arrArgument){
+        return $this->dao->insert_user_social_DAO($this->db,$arrArgument);
+    }
+
     public function exist_user_BLL($arrArgument){
         return $this->dao->exist_user_DAO($this->db,$arrArgument);
     }

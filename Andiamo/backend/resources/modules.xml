@@ -36,4 +36,12 @@
         <name>shop</name>
         <uri>shop</uri>
     </module>
+    <module>
+        <name>profile</name>
+        <uri>profile</uri>
+    </module>
+    <module>
+        <name>logout</name>
+        <uri>logout</uri>
+    </module>
 </modules>

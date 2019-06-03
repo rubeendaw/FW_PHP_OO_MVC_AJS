@@ -2,10 +2,14 @@
 class controller_profile {
     public function __construct() {
         include(FUNCTIONS_PROFILE . "functions_profile.inc.php");
-        // include(UTILS . "upload.php");
-        // include(UTILS . "mail.inc.php");
         $_SESSION['module'] = "profile";
     }
+
+    function print_user(){
+        $result = loadModel(MODEL_PROFILE,'profile_model','print_user',$_GET['param']);
+        echo json_encode($result[0]);
+    }
+
     public function view_profile() {
             // require_once(VIEW_PATH_INC . "header.php")
             require_once(VIEW_PATH_INC . "top_page.php");;
@@ -20,72 +24,58 @@ class controller_profile {
         public function upload_avatar() {
             // if ((isset($_POST["upload"])) && ($_POST["upload"] == true)) {
                 $result_prodpic = upload_files();
+                // $rest = substr(json_encode($result_prodpic),13);
                 $_SESSION['result_prodpic'] = $result_prodpic;
                 echo json_encode($result_prodpic);
             // }
         }
 
 
-
-
-        // public function subir_prof() {
-        //     $dataJSON = json_decode($_POST["top_load"], true);
-        //     $data = $_POST["top_load"];
-        //     // $arrArgument = array(
-        //     //  'data' => $dataJSON
-        //     // );
-    
-        //     // $arrValue = false;
-        //     // $arrValue = loadModel(MODEL_HOME, "home_model", "select_home_top", $arrArgument );
-        //     echo '<script>';
-        //     echo 'console.log('. json_encode( $data ) .')';
-        //     echo '</script>';
-    
-        //     echo json_encode($dataJSON);
-        // }
         public function alta_profile(){
             $jsondata = array();
-            $profileJSON = json_decode($_POST["data"], true);
-            $result = validate_profile($profileJSON);
+            $profileJSON = json_decode($_POST['prof_data'], true);
+            // echo json_encode($profileJSON);
+            // exit;
+            // $result = validate_profile($profileJSON);
             // echo json_encode($result);
             // die();
             // if (empty($_SESSION['result_prodpic'])){
             //     $_SESSION['result_prodpic'] = array('result' => true, 'error' => "", "data" => "/15_profile/1_profile/media/default-avatar.png");
             // }
-            $result_prodpic = $_SESSION['result_prodpic'];
+            $pic = "http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/".substr($_SESSION['result_prodpic']['data'],75);
             // echo json_encode($result);
             // die();
-            if($result['result']) {
+            // if($result['result']) {
                 // $username = $_SESSION['username'];
-                $username = "ruamsa1";
+                $username = $profileJSON['puser'];
                 $arrArgument = array(
-                    'email' => $result['data']['email'],
-                    'name' => $result['data']['name'],
-                    'phone' => $result['data']['phone'],
-                    'avatar' => $result_prodpic['data'],
-                    'country' => $result['data']['country'],
-                    'province' => $result['data']['province'],
-                    'city' => $result['data']['city'],
+                    'email' => $profileJSON['pemail'],
+                    'name' => $profileJSON['pname'],
+                    'phone' => $profileJSON['pphone'],
+                    'avatar' => $pic,
+                    'country' => $profileJSON['ppais'],
+                    'province' => $profileJSON['provincia'],
+                    'city' => $profileJSON['poblacion'],
                     'username' => $username
                 );
-                $arrValue = false;
+                // $arrValue = false;
                 $arrValue = loadModel(MODEL_PROFILE, "profile_model", "update_profile", $arrArgument);
-                // echo json_encode($arrValue);
-                // die();
-            }
+                echo json_encode($arrValue);
+                exit();
+            // }
                 
-                if ($arrValue){
-                    $message = "profile has been successfull registered";
-                }else{
-                    $message = "Problem ocurred registering a porduct";
-                }
+                // if ($arrValue){
+                //     $message = "profile has been successfull registered";
+                // }else{
+                //     $message = "Problem ocurred registering a porduct";
+                // }
         
-                $_SESSION['profile'] = $arrArgument;
-                $_SESSION['message'] = $message;
-                $callback="index.php?page=controller_profile&op=view";
+                // $_SESSION['profile'] = $arrArgument;
+                // $_SESSION['message'] = $message;
+                // $callback="index.php?page=controller_profile&op=view";
         
-                $jsondata['success'] = true;
-                $jsondata['redirect'] = $callback;
+                // $jsondata['success'] = true;
+                // $jsondata['redirect'] = $callback;
                 echo json_encode($jsondata);
                 exit;
             // }else{
@@ -138,24 +128,10 @@ class controller_profile {
             session_destroy(); // Destruye la sesión
         }
 
-/////////////////////////////////////////////////// load_data
-// if ((isset($_GET["load_data"])) && ($_GET["load_data"] == true)) {
-//     $jsondata = array();
-
-//     if (isset($_SESSION['profile'])) {
-//         $jsondata["profile"] = $_SESSION['profile'];
-//         echo json_encode($jsondata);
-//         exit;
-//     } else {
-//         $jsondata["profile"] = "";
-//         echo json_encode($jsondata);
-//         exit;
-//     }
-// }
 /////////////////////////////////////////////////// load_country
         public function load_countries() {
                 $json = array();
-                $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
+                $url = 'http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/backend/resources/countries.json';
                 try {
                 $json = loadModel(MODEL_PROFILE, "profile_model", "obtain_countries", $url);
                 } catch (Exception $e) {

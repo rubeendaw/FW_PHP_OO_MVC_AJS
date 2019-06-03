@@ -67,7 +67,12 @@ andiamo.config(['$routeProvider',
 		})
 		.when("/profile", {
 			templateUrl: "Andiamo/frontend/modules/profile/view/profile.view.html",
-			controller: "profileCtrl"
+			controller: "profileCtrl",
+			resolve: {
+				infoUser: function (services,localstorageService) {
+					return services.get('profile', 'print_user',localstorageService.getUsers());
+				}
+			}
 		})
 		// .when("/logout", {
 		// 	templateUrl: "Andiamo/frontend/modules/home/view/home.view.html",

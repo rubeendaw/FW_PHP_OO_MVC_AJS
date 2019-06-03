@@ -38,4 +38,7 @@ class profile_bll{
     public function obtain_cities_BLL($arrArgument){
       return $this->dao->obtain_cities_DAO($arrArgument);
     }
+    public function print_user_BLL($arrArgument){
+        return $this->dao->print_user_DAO($this->db,$arrArgument);
+      }
 }

@@ -16,10 +16,6 @@
         <name>delete_avatar</name>
         <uri>delete_avatar</uri>
     </function>
-    <!-- <function>
-        <name>subir_prof</name>
-        <uri>subir_prof</uri>
-    </function> -->
     <function>
         <name>load_profile</name>
         <uri>load_profile</uri>
@@ -39,5 +35,9 @@
     <function>
         <name>load_towns</name>
         <uri>load_towns</uri>
+    </function>
+    <function>
+        <name>print_user</name>
+        <uri>print_user</uri>
     </function>
 </functions>

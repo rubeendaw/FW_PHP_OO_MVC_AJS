@@ -34,4 +34,7 @@ class profile_model {
         return $this->bll->obtain_cities_BLL($arrArgument);
     }
 
+    public function print_user($arrArgument){
+        return $this->bll->print_user_BLL($arrArgument);
+    }
 }

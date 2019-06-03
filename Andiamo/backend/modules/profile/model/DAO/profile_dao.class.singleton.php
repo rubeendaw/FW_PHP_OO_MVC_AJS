@@ -22,10 +22,10 @@ class profile_DAO {
         $country = $arrArgument['country'];
         $province = $arrArgument['province'];
         $city = $arrArgument['city'];
-        $sql = "UPDATE users SET email = '$email', name = '$name', phone = '$phone', country = '$country', province = '$province', city = '$city', avatar = '$avatar' WHERE email = (SELECT email FROM (SELECT * FROM users) AS t WHERE username = '$username')";
+        $sql = "UPDATE users SET email = '$email', name = '$name', phone = '$phone', country = '$country', province = '$province', city = '$city', avatar = '$avatar' WHERE IDuser = '$username'";
+        return $db->ejecutar($sql);
         // $sql = "UPDATE users SET email = '$email' WHERE email = 'prueba@prueebaa.es'";
-        // return $db->ejecutar($sql);
-        return $sql;
+        // return $sql;
     }
 
     public function obtain_countries_DAO($url){
@@ -79,5 +79,11 @@ class profile_DAO {
         }
         return $json;
     }
+
+    public function print_user_DAO($db,$arrArgument) {
+      $sql = "SELECT * FROM users WHERE tokenlog = '$arrArgument'";
+      $stmt = $db->ejecutar($sql);
+      return $db->listar($stmt);
+  }
 
 }

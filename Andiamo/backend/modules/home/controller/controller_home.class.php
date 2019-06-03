@@ -3,25 +3,6 @@ class controller_home {
     function __construct() {
         $_SESSION['module'] = "home";
     }
-    
-    // function view_home() {
-    //     require_once(VIEW_PATH_INC . "top_page.php");;
-    //     require_once(VIEW_PATH_INC . "menu_no_auth.php");
-    //     loadView('modules/home/view/', 'home.html');
-    //     require_once(VIEW_PATH_INC . "footer.php");
-    // }
-
-    // function dropdown_types(){
-    //     $json = array();
-    //     $json = loadModel(MODEL_HOME, "home_model", "select_all_type");
-    //     echo json_encode($json);
-    // }
-
-    // function dropdown_country(){
-    //     $json = array();
-    //     $json = loadModel(MODEL_HOME, "home_model", "select_all_country",$_POST['uni']);
-    //     echo json_encode($json);
-    // }
 
     function show_travels(){
         $json = array();
@@ -46,34 +27,6 @@ class controller_home {
         loadModel(MODEL_HOME, "home_model", "active_user",$token['token']);
         echo json_encode($token);
     }
-    
-    // function autocomplete(){
-    //     $arrArgument = array(
-    //         'types' => $_POST['types'],
-    //         'country' => $_POST['country'],
-    //         'service' => $_POST['service']
-    //     );
-
-    //     $json = array();
-    //     $json = loadModel(MODEL_HOME, "home_model", "select_all_destination", $arrArgument);
-    //     // echo json_encode($json);
-    //     foreach ($json as $row) {
-    //         echo '<div>
-    //                 <a class="suggest-element" data="'.$row['destination'].'" id="service'.$row['id'].'">'.utf8_encode($row['destination']).'</a>
-    //             </div>';
-    //     }
-    //     exit;
-    // }
-
-    // function redirect(){
-    //     $arrArgument = array(
-    //         'types' => $_POST['types'],
-    //         'country' => $_POST['country'],
-    //         'destination' => $_POST['destination']
-    //     );
-    //     loadModel(MODEL_HOME, "home_model", "select_filter", $arrArgument);
-    //     include("module/shop/view/shop.php");
-    // }
 
 }
 

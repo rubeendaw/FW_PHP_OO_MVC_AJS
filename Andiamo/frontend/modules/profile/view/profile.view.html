@@ -11,36 +11,40 @@
         <div id="profile-data" class="tab-pane fade in active">
             <br>
             <h3>Profile</h3>
+            <img ng-src='{{avatar}}'>
             <form autocomplete="on" method="post" name="form_profile" id="form_profile">
                     <div class="form-group">
                         <span id="error_email" class="styerror"></span>
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="prueba@gmail.com" value="">
+                        <input ng-model="userInfo.email" type="text" class="form-control" id="email" name="email" placeholder="prueba@gmail.com" value="{{userInfo.email}}">
                         <span id="error_name" class="styerror"></span>
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Ruben" value="">
+                        <input ng-model="userInfo.name" type="text" class="form-control" id="name" name="name" placeholder="Ruben" value="{{userInfo.name}}">
                         <span id="error_phone" class="styerror"></span>
                         <label for="phone">Phone</label>
-                        <input type="text" class="form-control" id="phone" name="phone" placeholder="666666666" value="">
+                        <input ng-model="userInfo.phone" type="text" class="form-control" id="phone" name="phone" placeholder="666666666" value="{{userInfo.phone}}">
                         <span id="error_country" class="styerror"></span>
                         <br>
-                        <select class="form-control-drop" name="country" id="country">
-                            <option selected>Select country</option>
+                        <select ng-model="userInfo.pais" ng-options="item.name for item in paises" class="form-control-drop" name="country" id="country" ng-change="resetPais()">
+                            <option value="{{userInfo.country}}" selected>Select country</option>
                         </select>
                         <span id="error_province" class="styerror"></span>
-                        <select class="form-control-drop" name="province" id="province">
-                            <option selected>Select province</option>
+                        <select ng-options="item.nombre for item in provincias" ng-model="userInfo.provincia" placeholder="Provincia" ng-change="resetValues()" ng-disabled="userInfo.pais.code!='ES'" class="form-control-drop" name="province" id="province">
+                            <option value="{{userInfo.province}}" selected>Select province</option>
                         </select>
                         <span id="error_city" class="styerror"></span>
-                        <select class="form-control-drop" name="city" id="city">
-                            <option selected>Select city</option>
+                        <select class="form-control-drop" name="city" ng-model="userInfo.poblacion"
+                        ng-options="item.poblacion for item in poblaciones " placeholder="Poblacion" id="city" ng-disabled="userInfo.pais.code!='ES'">
+                            <option value="{{userInfo.city}}" selected>Select city</option>
                         </select>
                     </div>
                     <div class="msg"></div>
                     <br>
-                        <div id="dropzone" class="dropzone"></div>
+                        <!-- <div id="dropzone" class="dropzone"></div> -->
+                        <button id="dropzone" dropzone="dropzoneConfig" class="dropzone"></button>
                         <br>
-                    <input class="btn btn-success" type="button" name="update_profile" id="update_profile" value="Enviar"/>
+                    <input ng-click="update_profile()" class="btn btn-success" type="button" name="update_profile" id="update_profile" value="Enviar"/>
+                    <input class="btn btn-danger" ng-click="logout()" value="Logout"></input>
                     <br><br>
             </form>
         </div>
@@ -86,4 +90,3 @@
               $('.dataTables_length').addClass('bs-select');
         });
 </script>
-<input type="button" ng-click="logout()" value="Logout"></input>

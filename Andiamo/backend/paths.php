@@ -2,6 +2,9 @@
 //PROYECTO
 define('PROJECT', '/www/FW_PHP_OO_MVC_AJS/Andiamo/backend/');
 
+//PROYECTO
+define('PROJECT_MEDIA', '/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/');
+
 //PROYECTO PATH
 define('PROJECT_PATH', '/www/FW_PHP_OO_MVC_AJS/');
 
@@ -10,6 +13,9 @@ define('PROJECT_PATH', '/www/FW_PHP_OO_MVC_AJS/');
 
 //SITE_ROOT
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT);
+
+//SITE_ROOT
+define('SITE_ROOT_MEDIA', $_SERVER['DOCUMENT_ROOT'] . PROJECT_MEDIA);
 
 //SITE_PATH
 define('SITE_PATH', 'http://' . $_SERVER['HTTP_HOST'] . PROJECT);
@@ -33,7 +39,7 @@ define('JS_PATH', SITE_PATH . 'view/assets/js/');
 define('IMG_PATH', SITE_PATH . 'view/assets/images/');
 
 //IMG PROFILE
-define('MEDIA_PATH', SITE_ROOT . 'view/assets/images/profile/');
+define('MEDIA_PATH', SITE_ROOT_MEDIA . 'view/assets/images/profile/');
 
 //IMG FLAGS
 define('FLAGS_PATH', SITE_PATH . 'view/assets/images/flags/');

@@ -14,8 +14,8 @@ class like_model {
         return self::$_instance;
     }
 
-    public function show_like($user) {
-        return $this->bll->show_like_BLL($user);
+    public function show_like($arrArgument) {
+        return $this->bll->show_like_BLL($arrArgument);
     }
 
     public function delete_like($arrArgument){

@@ -17,10 +17,11 @@ class login_DAO {
     function insert_user_DAO($db,$arrArgument){
             $user = $arrArgument['ruser'];
             $email = $arrArgument['remail'];
-            // $hash = '$2y$07$BCryptRequires2';
+            $hash = '$2y$07$BCryptRequires2';
             // $password = password_hash($arrArgument['rpasswd'], $hash);
             $password = $arrArgument['rpasswd'];
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            
+            $hashed_password = password_hash($arrArgument['rpasswd'], PASSWORD_DEFAULT);
             $token = generate_Token_secure(20);
             // $tokenlog = md5(uniqid(rand(),true));
             $img = 'https://api.adorable.io/avatars/25/'.$email.'.png';
@@ -58,8 +59,9 @@ class login_DAO {
     function update_passwd_DAO($db,$arrArgument) {
         // $hash = '$2y$07$BCryptRequires2';
         // $pass = password_hash($arrArgument['recpass'], $hash);
-        $pass = $arrArgument['rec_pass'];
-        $hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+        // $pass = $arrArgument['rec_pass'];
+        $hashed_password = password_hash($arrArgument['pass'], PASSWORD_DEFAULT);
+        // $pass = crypt($arrArgument['recpass'], '$1$rasmusle$');
         $token = $arrArgument['token'];
         $sql = "UPDATE users SET password = '$hashed_password' WHERE token = '$token'";
         return $db->ejecutar($sql);

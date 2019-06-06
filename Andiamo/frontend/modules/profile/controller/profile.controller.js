@@ -1,8 +1,9 @@
-andiamo.controller('profileCtrl', function($scope, loginService, infoUser, load_ubication, services, toastr, $timeout) {
+andiamo.controller('profileCtrl', function($scope, loginService, infoUser, likesUser, load_ubication, services, toastr, $timeout, localstorageService) {
     $scope.logout = function(){
         loginService.logout();
     }
     $scope.userInfo = infoUser;
+    $scope.userLikes = likesUser;
     $scope.avatar = infoUser.avatar;
     console.log(infoUser);
 
@@ -90,6 +91,10 @@ andiamo.controller('profileCtrl', function($scope, loginService, infoUser, load_
                 }
             }
     }};
+
+    $scope.hola = function () {
+        console.log("Hola");
+    };
     
     $scope.update_profile = function () {
         // console.log($scope.userInfo.avatar);
@@ -107,5 +112,26 @@ andiamo.controller('profileCtrl', function($scope, loginService, infoUser, load_
 			}
 		});
     };
+    
+    $scope.deletelike = function (id) {
+        console.log(id);
+        token = localstorageService.getUsers();
+		services.put('like','del_like',{'id':id, 'token':token}).then(function (response) {
+            console.log(response);
+			if (response === 'true') {
+                toastr.success('LIKE Borrado', 'LIKE',{
+                    closeButton: true
+                });
+                $timeout( function(){
+                    location.reload(true);
+                  }, 1000 );
+			}else{
+                toastr.error('No se ha podido borrar', 'LIKE',{
+                    closeButton: true
+                });
+            }
+		});
+    };
+    // console.log(likesUser);
     
 });

@@ -1,5 +1,6 @@
-andiamo.controller('shopCtrl', function($scope, all_travels){
+andiamo.controller('shopCtrl', function($scope, all_travels, localstorageService, services, toastr){
     // console.log(list_search);
+    console.log(all_travels);
 	$scope.travels = all_travels;
 	$scope.currentPage = 1;
 	$scope.filter_travels = $scope.travels.slice(0,6);
@@ -10,16 +11,40 @@ andiamo.controller('shopCtrl', function($scope, all_travels){
 	$scope.pageChanged = function() {
 		var startPos = ($scope.currentPage - 1) * 6;
 		$scope.filter_travels = $scope.travels.slice(startPos, startPos + 6);
-	  };
+      };
+      
+      $scope.selectSearch = function(){
+        if ($scope.busqueda.travel) {
+            travel = $scope.busqueda.travel;
+          console.log(travel);
+        }else if($scope.busqueda){
+            travel = $scope.travel;
+        }else{
+            console.log("hola2");
+          }
+          if (travel) {
+            // console.log(name);
+            location.href = '#/shop/'+travel;
+        }
+      }
 
-	//   $scope.selectSearch = function(){
-    //     list_tarvel = [];
-    //     if ($scope.busqueda.name) {
-	// 		name = $scope.busqueda.name;
-	// 		console.log(name);
-    //     }else if($scope.busqueda){
-    //         name = $scope.busqueda;
-    //     }
+      $scope.insertlike = function (id) {
+        // console.log($scope.userInfo.avatar);
+        token = localstorageService.getUsers();
+		    services.put('like','ins_like',{'id':id, 'token':token}).then(function (response) {
+          console.log(response);
+          if (response === 'true') {
+              toastr.success('LIKE Guardado', 'LIKE',{
+              closeButton: true
+              });
+          }else{
+            toastr.info('Ya le has dado LIKE', 'LIKE',{
+            closeButton: true
+            });
+          }
+		    });
+    };
+    
 
     //     name = name.toLowerCase();
     //     list_search.forEach(function(data){

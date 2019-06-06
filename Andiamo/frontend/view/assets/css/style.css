@@ -1016,5 +1016,9 @@ text-align: center;
     padding-bottom: 2%;
   }
 #itemshome{
-  display: flex !important;
+    display: flex !important;
+  }
+#centersearch{
+    display: flex !important;
+    justify-content: center !important;
   }

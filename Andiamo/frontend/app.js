@@ -71,6 +71,9 @@ andiamo.config(['$routeProvider',
 			resolve: {
 				infoUser: function (services,localstorageService) {
 					return services.get('profile', 'print_user',localstorageService.getUsers());
+				},
+				likesUser: function (services,localstorageService) {
+					return services.get('like', 'show_like',localstorageService.getUsers());
 				}
 			}
 		})

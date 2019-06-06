@@ -29,13 +29,14 @@
 		            $valid = false;
 		        }
 		        elseif(!$data){
+		            // $error['luser'] = "El usuario no existe";
 		            $error['luser'] = "El usuario no existe";
 		            $valid = false;
 		        }
 		        // elseif(!password_verify($password, $hash)){
 				elseif(!password_verify($pass, $hashed_password)) {
 		        // elseif(!password_verify($result['lpasswd'], $hashed_password)){
-		            $error['lpasswd'] = "Contraseña incorrecta";
+		            $error['lpasswd'] = "La contraseña no es correcta";
 					$valid = false;
 				}
 		        elseif($activate != 1){

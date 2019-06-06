@@ -26,9 +26,6 @@ console.log(all_travels);
           if (name) {
             // console.log(name);
             location.href = '#/shop/'+name;
-        //   services.get('home', 'select_search',name).then(function (response) {
-        //     $scope.travel = response;
-        //   });
         }
       }
 });

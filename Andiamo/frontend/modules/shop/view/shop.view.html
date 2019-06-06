@@ -11,9 +11,12 @@
 
         <div class="row mb-5">
           <div class="col-md-9 order-2">
+            <div id="centersearch">
               <input style="display: inline;" id="mibusca" type="text" ng-model="busqueda" placeholder="Buscar viajes" autocomplete="off"
-              uib-typeahead="name as name.country for name in names | filter:{country:$viewValue} | limitTo:5" class="form-control">
+              uib-typeahead="travel as travel.destination for travel in travels | filter:{destination:$viewValue} | limitTo:5" class="form-control">
               <button class="btn btn-success" ng-click="selectSearch()">Buscar</button>
+            </div>
+              <!-- <p>{{travels}}</p> -->
           </br><br/>
             <!-- <div class="row">
               <div class="col-md-12 mb-5">
@@ -51,6 +54,7 @@
                     <a href="shop-single.html"><img src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
+                    <p class="icon-heart" ng-click="insertlike(data.id)"></p>
                     <h3><a href="shop-single.html">{{data.country}}</a></h3>
                     <p class="mb-0">{{data.destination}}</p>
                     <p class="text-primary font-weight-bold">{{data.price}}</p>

@@ -215,17 +215,18 @@ andiamo.controller('loginCtrl', function($scope, services, toastr, $timeout, loc
 
 andiamo.controller('changepassCtrl', function($scope,services,$route,toastr,$timeout) {
 	$scope.RecPass = function(){
-		// console.log(data);
+		// console.log($scope.recpass.password2);
 		services.put('login','update_passwd',
-		{'rec_pass':JSON.stringify({'recpass':$scope.recpass.passwordr,'token':$route.current.params.token})})
+		{'rec_pass':JSON.stringify({'recpass':$scope.recpass.password,'token':$route.current.params.token})})
 		.then(function (response) {
+			console.log(response);
 			if (response) {
 					toastr.success('Contraseña cambiada correctamente', 'Perfecto',{
                     closeButton: true
                 });
                 $timeout( function(){
 		            location.href = '#/';
-		        }, 3000 );
+		        }, 1000 );
 			}else{
 				toastr.error('Error al cambiar la contraseña', 'Error',{
                 	closeButton: true

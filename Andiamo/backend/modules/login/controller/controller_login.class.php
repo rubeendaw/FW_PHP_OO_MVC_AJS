@@ -9,7 +9,8 @@ class controller_login {
         $info_data = json_decode($_POST['total_data'],true);
         $response = validate_data($info_data,'login');
         if ($response['result']) {
-            $data = loadModel(MODEL_LOGIN,'login_model','select_token',$response['data']['luser']);
+            // $data = loadModel(MODEL_LOGIN,'login_model','select_token',$response['data']['luser']);
+            $data = loadModel(MODEL_LOGIN,'login_model','select_token',$info_data['luser']);
             $data = $data[0];
             $arrArgument = array(
                 'result' => true,
@@ -76,7 +77,11 @@ class controller_login {
     function update_passwd(){
         $pass_data = json_decode($_POST['rec_pass'],true);
         if ($pass_data) {
-            $result = loadModel(MODEL_LOGIN,'login_model','update_passwd',$pass_data);
+            $arrArgument = array(
+                'pass' => $pass_data['recpass'],
+                'token' => $pass_data['token']
+            );
+            $result = loadModel(MODEL_LOGIN,'login_model','update_passwd',$arrArgument);
             echo json_encode($result);
         }else{
             $jsondata = false;

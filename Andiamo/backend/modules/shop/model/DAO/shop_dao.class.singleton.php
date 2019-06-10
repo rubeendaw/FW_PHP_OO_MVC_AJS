@@ -18,24 +18,15 @@ class shop_DAO {
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
-		function select_all_travels_DAO($db){
-			$sql = "SELECT * FROM travels";
-            $stmt = $db->ejecutar($sql);
-            return $db->listar($stmt);
-        }
+    function select_all_travels_DAO($db){
+        $sql = "SELECT * FROM travels";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
 
-		function select_travel_DAO($db, $arrArgument){
-			$sql = "SELECT * FROM travels WHERE id='$arrArgument'";
-            $stmt = $db->ejecutar($sql);
-            return $db->listar($stmt);
-        }
-        
-		function select_filter_DAO($db, $arrArgument){
-            $type = $arrArgument['types'];
-            $country = $arrArgument['country'];
-            $destination = $arrArgument['destination'];
-			$sql = "SELECT DISTINCT * FROM travels WHERE type='$type' AND country='$country' AND destination='$destination'";
-            $stmt = $db->ejecutar($sql);
-            return $db->listar($stmt);
-		}
+    function select_travel_DAO($db, $arrArgument){
+        $sql = "SELECT * FROM travels WHERE id='$arrArgument'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
 }

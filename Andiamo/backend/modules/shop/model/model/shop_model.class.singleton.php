@@ -18,10 +18,6 @@ class shop_model {
         return $this->bll->select_all_travels_BLL();
     }
 
-    public function select_filter($arrArgument) {
-        return $this->bll->select_filter_BLL($arrArgument);
-    }
-
     public function select_travel($arrArgument) {
         return $this->bll->select_travel_BLL($arrArgument);
     

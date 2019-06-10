@@ -1,32 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <functions>
     <function>
-        <name>view_shop</name>
-        <uri>view_shop</uri>
-    </function>
-    <function>
-        <name>view_shopdd</name>
-        <uri>view_shopdd</uri>
-    </function>
-    <function>
         <name>view_shop_details</name>
         <uri>view_shop_details</uri>
     </function>
     <function>
         <name>show_travels</name>
         <uri>show_travels</uri>
-    </function>
-    <function>
-        <name>show_travels2</name>
-        <uri>show_travels2</uri>
-    </function>
-    <function>
-        <name>details</name>
-        <uri>details</uri>
-    </function>
-    <function>
-        <name>redirect</name>
-        <uri>redirect</uri>
     </function>
     <function>
         <name>list_search</name>

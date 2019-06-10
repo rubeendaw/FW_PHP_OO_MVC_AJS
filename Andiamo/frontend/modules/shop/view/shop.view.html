@@ -13,8 +13,8 @@
           <div class="col-md-9 order-2">
             <div id="centersearch">
               <input style="display: inline;" id="mibusca" type="text" ng-model="busqueda" placeholder="Buscar viajes" autocomplete="off"
-              uib-typeahead="travel as travel.destination for travel in travels | filter:{destination:$viewValue} | limitTo:5" class="form-control">
-              <button class="btn btn-success" ng-click="selectSearch()">Buscar</button>
+              uib-typeahead="travel as travel.country for travel in travels | filter:{country:$viewValue} | limitTo:5" class="form-control">
+              <button class="btn btn-success" ng-click="Search()">Buscar</button>
             </div>
               <!-- <p>{{travels}}</p> -->
           </br><br/>
@@ -46,35 +46,50 @@
                 </div>
               </div>
             </div> -->
-            <div class="row mb-5">
+            <div ng-show="myshop" class="row mb-5">
 
-              <div ng-show="all_list" ng-repeat="data in filter_travels" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div ng-click="details(data.id)" ng-show="all_list" ng-repeat="data in filter_travels" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid"></a>
+                    <img src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
                     <p class="icon-heart" ng-click="insertlike(data.id)"></p>
-                    <h3><a href="shop-single.html">{{data.country}}</a></h3>
+                    <h3>{{data.country}}</h3>
                     <p class="mb-0">{{data.destination}}</p>
                     <p class="text-primary font-weight-bold">{{data.price}}</p>
                   </div>
                 </div>
               </div>
 
-              <div ng-show="filter_list" ng-repeat="data in list" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div ng-click="details(data.id)" ng-show="filter_list" ng-repeat="data in list" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <a href="shop-single.html"><img src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid"></a>
+                    <img src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="shop-single.html">{{data.country}}</a></h3>
+                    <h3>{{data.country}}</h3>
                     <p class="mb-0">{{data.destination}}</p>
                     <p class="text-primary font-weight-bold">{{data.price}}</p>
                   </div>
                 </div>
               </div>
+              
 
+            </div>
+
+            <div ng-show="detalles">
+              <button class="btn btn-warning" ng-click="volver()">Volver</button>
+              <div class="col-md-6">
+                <img src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{list_detail.img}}" alt="Image" class="img-fluid">
+              </div>
+              <div class="col-md-6">
+                <h2 class="text-black">{{list_detail.destination}}</h2>
+                <p>{{list_detail.country}}</p>
+                <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p>
+                <p><strong class="icon icon-shopping_cart text-primary h4"> {{list_detail.price}}€</strong></p>
+                <!-- <span id="list.id" class="InsertCarr icon icon-shopping_cart"></span> -->
+              </div>
             </div>
 
 

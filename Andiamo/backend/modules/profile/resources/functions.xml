@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <functions>
     <function>
-        <name>view_profile</name>
-        <uri>view_profile</uri>
-    </function>
-    <function>
         <name>upload_avatar</name>
         <uri>upload_avatar</uri>
     </function>
@@ -15,10 +11,6 @@
     <function>
         <name>delete_avatar</name>
         <uri>delete_avatar</uri>
-    </function>
-    <function>
-        <name>load_profile</name>
-        <uri>load_profile</uri>
     </function>
     <function>
         <name>close_session</name>

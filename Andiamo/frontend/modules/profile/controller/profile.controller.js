@@ -36,10 +36,7 @@ andiamo.controller('profileCtrl', function($scope, loginService, infoUser, likes
                 }
             });
             $scope.poblaciones = null;
-        } /*else { //en ng-disabled
-            $scope.provincias = null;
-            $scope.poblaciones = null;
-        }*/
+        } 
     };
 
     $scope.resetValues = function () {

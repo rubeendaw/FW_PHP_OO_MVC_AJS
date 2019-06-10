@@ -19,10 +19,6 @@ class shop_bll{
     public function select_all_travels_BLL(){
       return $this->dao->select_all_travels_DAO($this->db);
     }
-    
-    public function select_filter_BLL($arrArgument){
-      return $this->dao->select_filter_DAO($this->db, $arrArgument);
-    }
 
     public function select_travel_BLL($arrArgument){
       return $this->dao->select_travel_DAO($this->db, $arrArgument);

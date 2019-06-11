@@ -5,7 +5,7 @@ andiamo.controller('profileCtrl', function($scope, loginService, infoUser, likes
     $scope.userInfo = infoUser;
     $scope.userLikes = likesUser;
     $scope.avatar = infoUser.avatar;
-    console.log(infoUser);
+    // console.log(infoUser);
 
     load_ubication.load_countries().then(function (response) {
         if(response.success){
@@ -88,47 +88,58 @@ andiamo.controller('profileCtrl', function($scope, loginService, infoUser, likes
                 }
             }
     }};
-
-    $scope.hola = function () {
-        console.log("Hola");
-    };
     
     $scope.update_profile = function () {
-        // console.log($scope.userInfo.avatar);
-		services.put('profile','alta_profile',{'prof_data':JSON.stringify({'pname':$scope.userInfo.name, 'pemail': $scope.userInfo.email, 'pphone': $scope.userInfo.phone, 'ppais': $scope.userInfo.pais.name, 'provincia':$scope.userInfo.provincia.nombre, 'poblacion': $scope.userInfo.poblacion.poblacion, 'puser': infoUser.IDuser})}).then(function (response) {
-            console.log(response);
-			if (response === 'true') {
-				toastr.success('Cambios guardados correctamente', 'Perfecto',{
-                    closeButton: true
-                });
-                // $uibModalInstance.dismiss('cancel');
-                $timeout( function(){
-		            location.href = '#/';
-		            location.href = '#/profile';
-		        }, 1500 );
-			}
-		});
+        token = localstorageService.getUsers();
+        services.put('login','regenerate_token',{'token':token}).then(function (response) {
+        localstorageService.setUsers(response.tokenlog);
+        if (response.result === true){
+            services.put('profile','alta_profile',{'prof_data':JSON.stringify({'pname':$scope.userInfo.name, 'pemail': $scope.userInfo.email, 'pphone': $scope.userInfo.phone, 'ppais': $scope.userInfo.pais.name, 'provincia':$scope.userInfo.provincia.nombre, 'poblacion': $scope.userInfo.poblacion.poblacion, 'puser': infoUser.IDuser})}).then(function (response) {
+                console.log(response);
+                if (response === 'true') {
+                    toastr.success('Cambios guardados correctamente', 'Perfecto',{
+                        closeButton: true
+                    });
+                    // $uibModalInstance.dismiss('cancel');
+                    $timeout( function(){
+                        location.href = '#/';
+                        location.href = '#/profile';
+                    }, 1500 );
+                }
+            });
+        }else{
+            toastr.error('No estas autorizado', 'PROFILE',{
+            closeButton: true
+            });
+        }
+        });
     };
     
     $scope.deletelike = function (id) {
-        console.log(id);
         token = localstorageService.getUsers();
-		services.put('like','del_like',{'id':id, 'token':token}).then(function (response) {
-            console.log(response);
+		services.put('login','regenerate_token',{'token':token}).then(function (response) {
+            localstorageService.setUsers(response.tokenlog);
+        if (response.result === true){
+		    services.put('like','del_like',{'id':id, 'token':response.tokenlog}).then(function (response) {
 			if (response === 'true') {
                 toastr.success('LIKE Borrado', 'LIKE',{
-                    closeButton: true
+                closeButton: true
                 });
                 $timeout( function(){
                     location.reload(true);
                   }, 1000 );
 			}else{
                 toastr.error('No se ha podido borrar', 'LIKE',{
-                    closeButton: true
+                closeButton: true
                 });
             }
-		});
+            });
+        }else{
+            toastr.error('No estas autorizado', 'LIKE',{
+            closeButton: true
+            });
+        }
+        });
     };
-    // console.log(likesUser);
     
 });

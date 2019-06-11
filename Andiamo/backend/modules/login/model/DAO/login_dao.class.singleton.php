@@ -36,8 +36,6 @@ class login_DAO {
             $user = $arrArgument['user'];
             $name = $arrArgument['name'];
             $avatar = $arrArgument['avatar'];
-            // $token = generate_Token_secure(20);
-            // $tokenlog = md5(uniqid(rand(),true));
             $tokenlog = encode_jwt($user);
             $sql = "INSERT INTO users(IDuser,username,tokenlog,type,name,avatar,activate) 
             VALUES('$user','$user','$tokenlog',1,'$name','$avatar',1)";
@@ -57,11 +55,7 @@ class login_DAO {
     }
 
     function update_passwd_DAO($db,$arrArgument) {
-        // $hash = '$2y$07$BCryptRequires2';
-        // $pass = password_hash($arrArgument['recpass'], $hash);
-        // $pass = $arrArgument['rec_pass'];
         $hashed_password = password_hash($arrArgument['pass'], PASSWORD_DEFAULT);
-        // $pass = crypt($arrArgument['recpass'], '$1$rasmusle$');
         $token = $arrArgument['token'];
         $sql = "UPDATE users SET password = '$hashed_password' WHERE token = '$token'";
         return $db->ejecutar($sql);
@@ -77,5 +71,25 @@ class login_DAO {
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
+    
+    function type_user_DAO($db,$arrArgument) {
+        $sql = "SELECT type FROM users WHERE tokenlog = '$arrArgument'";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
+    
+    function search_token_DAO($db,$arrArgument) {
+        $sql = "SELECT IDuser,type,tokenlog FROM users WHERE tokenlog = '$arrArgument'";
+        
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+    }
 
+    function reg_token_DAO($db,$arrArgument) {  
+        $tokenlog = $arrArgument['tokenlog'];
+        $user = $arrArgument['user'];
+        $sql = "UPDATE users SET tokenlog = '$tokenlog' WHERE IDuser = '$user'";
+
+        $stmt = $db->ejecutar($sql);
+    }
 }

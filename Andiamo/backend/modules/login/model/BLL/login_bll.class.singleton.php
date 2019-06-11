@@ -39,4 +39,16 @@ class login_bll{
     public function select_token_BLL($arrArgument){
         return $this->dao->select_token_DAO($this->db,$arrArgument);
     }
+
+    public function type_user_BLL($arrArgument){
+        return $this->dao->type_user_DAO($this->db,$arrArgument);
+      }
+
+    public function reg_token_BLL($arrArgument){
+        return $this->dao->reg_token_DAO($this->db,$arrArgument);
+      }
+
+    public function search_token_BLL($arrArgument){
+        return $this->dao->search_token_DAO($this->db,$arrArgument);
+      }
 }

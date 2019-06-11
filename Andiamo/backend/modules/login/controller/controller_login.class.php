@@ -5,11 +5,19 @@ class controller_login {
 		include(UTILS_LOGIN . "functions_login.inc.php");
     }
 
+    function tipo(){
+        $result = loadModel(MODEL_LOGIN,'login_model','type_user',$_GET['param']);
+        if ($result) {
+            echo json_encode($result[0]);
+        }else{
+            echo json_encode(false);
+        }
+    }
+
     function validate_login(){
         $info_data = json_decode($_POST['total_data'],true);
         $response = validate_data($info_data,'login');
         if ($response['result']) {
-            // $data = loadModel(MODEL_LOGIN,'login_model','select_token',$response['data']['luser']);
             $data = loadModel(MODEL_LOGIN,'login_model','select_token',$info_data['luser']);
             $data = $data[0];
             $arrArgument = array(
@@ -17,9 +25,6 @@ class controller_login {
                 'tokenlog' => $data['tokenlog'],
                 'type' => $data['type']
             );
-            // echo json_encode($data['type']);
-            // exit();
-            // $data['success'] = true;
             echo json_encode($arrArgument);
         }else{
             $jsondata['success'] = false;
@@ -155,5 +160,16 @@ class controller_login {
         redirect($url);
     }
 
+    public function regenerate_token(){
+        $user = loadModel(MODEL_LOGIN,'login_model','search_token',$_POST['token']);
+        $tokenlog = encode_jwt($user[0]['IDuser']);
+            $arrArgument = array(
+                'user' => $user[0]['IDuser'],
+                'tokenlog' => $tokenlog,
+                'result' => true
+            );
+            $result = loadModel(MODEL_LOGIN,'login_model','reg_token',$arrArgument);
+            echo json_encode($arrArgument);
+    }
 
 }

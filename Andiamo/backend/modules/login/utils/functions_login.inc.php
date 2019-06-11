@@ -167,12 +167,13 @@
 	function exist_user($user){
 		return loadModel(MODEL_LOGIN,'login_model','exist_user',$user);
 	}
-
 	require_once "JWT.php";
 	function encode_jwt($user){
 		
 		$header = '{"typ":"JWT", "alg":"HS256"}';
-		$secret = 'passwordispassword';
+		$time = time();
+		$psswd = 'passwordispassword';
+		$secret = $time.$psswd;
 		
 		$payload = '{
 			"iat":'.time().'", 
@@ -189,31 +190,3 @@
 	function redirect($url){
 		die('<script>window.location.href="' . $url . '";</script>');
 	}
-	// function decode_jwt($user){
-	// 	// require_once "JWT.php";
-
-	// 	$header = '{"typ":"JWT", "alg":"HS256"}';
-	// 	$secret = 'passwordispassword';
-
-	// 	$payload = '{
-	// 		"iat":"'.time().'", 
-	// 		"exp":"'.time() + (60*60).'",
-	// 		"name":'.$user'.
-	// 	}';
-
-	// 	$JWT = new JWT;
-	// 	$json = $JWT->decode($token, $secret);
-
-	// 	return $json;
-	// }
-
-	// function validate_birth($date){
-	// 	$thisdate = getdate();
-	// 	$resultado = strtotime($thisdate['mon'] . "/" . $thisdate['mday'] . "/" . $thisdate['year']) - strtotime($date);
-	// 	$oper=$resultado/(60*60*24);
-	// 	if($oper < 5844){
-	// 		return  true;
-	// 	} else{
-	// 		return false;
-	// 	}
-	// }

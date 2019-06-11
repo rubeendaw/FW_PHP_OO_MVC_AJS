@@ -37,4 +37,16 @@ class login_model {
     public function select_token($arrArgument){
         return $this->bll->select_token_BLL($arrArgument);
     }
+
+    public function type_user($arrArgument){
+        return $this->bll->type_user_BLL($arrArgument);
+    }
+
+    public function reg_token($arrArgument){
+        return $this->bll->reg_token_BLL($arrArgument);
+    }
+
+    public function search_token($arrArgument){
+        return $this->bll->search_token_BLL($arrArgument);
+    }
 }

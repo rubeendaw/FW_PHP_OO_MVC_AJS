@@ -10,21 +10,21 @@ function ($location, $rootScope, services,localstorageService, socialService) {
         var type = localstorageService.getType();
         console.log(token);
         if (token) {
-            // services.get('login', 'typeuser',token).then(function (response) {
-                if (type === '1') {
+            services.get('login', 'tipo',token).then(function (response) {
+                console.log(response);
+
+                if (response["type"] === '1') {
                     $rootScope.login_view = false;
-                    // $rootScope.logout_view = true;
                     $rootScope.profile_view = true;
 
-	            } else if (type === '2') {
+	            } else if (response["type"] === '2') {
                     $rootScope.login_view = false;
                     $rootScope.profile_view = true;
-                    // $rootScope.logout_view = true;
 
 	            }else{
                     $rootScope.login_view = true;
                 }
-            // });
+            });
         } else {
             $rootScope.login_view = true;
         }

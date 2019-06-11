@@ -24,4 +24,12 @@
         <name>social_datos</name>
         <uri>social_datos</uri>
     </function>
+    <function>
+        <name>tipo</name>
+        <uri>tipo</uri>
+    </function>
+    <function>
+        <name>regenerate_token</name>
+        <uri>regenerate_token</uri>
+    </function>
 </functions>

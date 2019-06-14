@@ -18,27 +18,41 @@
           </br><br/>
             <div ng-show="myshop" class="row mb-5">
 
-              <div ng-click="details(data.id)" ng-show="all_list" ng-repeat="data in filter_travels" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div ng-show="all_list" ng-repeat="data in filter_travels" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <img src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid">
+                    <img ng-click="details(data.id)" src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
                     <p class="icon-heart" ng-click="insertlike(data.id)"></p>
-                    <h3>{{data.country}}</h3>
+                    <a class="linkshop" ng-click="details(data.id)"><h3>{{data.country}}</h3></a>
                     <p class="mb-0">{{data.destination}}</p>
                     <p class="text-primary font-weight-bold">{{data.price}}</p>
                   </div>
                 </div>
               </div>
 
-              <div ng-click="details(data.id)" ng-show="filter_list" ng-repeat="data in list" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div ng-show="list_services" ng-repeat="data in list_some_services" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
-                    <img src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid">
+                    <img ng-click="details(data.id)" src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3>{{data.country}}</h3>
+                    <p class="icon-heart" ng-click="insertlike(data.id)"></p>
+                    <a class="linkshop" ng-click="details(data.id)"><h3>{{data.country}}</h3></a>
+                    <p class="mb-0">{{data.destination}}</p>
+                    <p class="text-primary font-weight-bold">{{data.price}}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div ng-show="filter_list" ng-repeat="data in list" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image">
+                    <img ng-click="details(data.id)" src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <a clas="linkshop" ng-click="details(data.id)"><h3>{{data.country}}</h3></a>
                     <p class="mb-0">{{data.destination}}</p>
                     <p class="text-primary font-weight-bold">{{data.price}}</p>
                   </div>
@@ -75,11 +89,9 @@
 
           <div class="col-md-3 order-1 mb-5 mb-md-0">
             <div class="border p-4 rounded mb-4">
-              <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
-              <ul class="list-unstyled mb-0">
-                <li class="mb-1"><a href="#" class="d-flex"><span>Men</span> <span class="text-black ml-auto">(2,220)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span class="text-black ml-auto">(2,550)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Children</span> <span class="text-black ml-auto">(2,124)</span></a></li>
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Destinos</h3>
+              <ul class="list-unstyled mb-0" ng-repeat="data in most_like">
+                <li class="mb-1"><a href="#/shop/{{data.country}}" class="d-flex"><span>{{data.country}}</span></a></li>
               </ul>
             </div>
 
@@ -91,15 +103,9 @@
               </div>
 
               <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
-                <label for="s_sm" class="d-flex">
-                  <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
-                </label>
-                <label for="s_md" class="d-flex">
-                  <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium (1,282)</span>
-                </label>
-                <label for="s_lg" class="d-flex">
-                  <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large (1,392)</span>
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Servicios</h3>
+                <label ng-repeat="data in services" for="s_sm" class="d-flex">
+                  <input ng-click="checked(data.Servicio); ver_servicios()" type="checkbox" class="mr-2 mt-1"> <span class="text-black">{{data.Servicio}} ({{data.cantidad}})</span>
                 </label>
               </div>
 

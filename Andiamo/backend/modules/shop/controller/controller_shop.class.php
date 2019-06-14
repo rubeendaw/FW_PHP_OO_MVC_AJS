@@ -22,4 +22,38 @@ class controller_shop {
 		$json = loadModel(MODEL_SHOP, "shop_model", "select_travel", $arrArgument);
 		echo json_encode($json);
 	}
+
+	function view_services(){
+		$json = loadModel(MODEL_SHOP, "shop_model", "list_services");
+		echo json_encode($json);
+	}
+
+	function view_most_like(){
+		$json = loadModel(MODEL_SHOP, "shop_model", "list_most_like");
+		echo json_encode($json);
+	}
+
+	function listar_servicios(){
+		$arrArgument = array();
+
+		if ($_POST['Parking'] == true){
+			// array_push($arrArgument, "Parking");
+			$arrArgument['Parking'] = 'Parking';
+		}
+		if ($_POST['Wifi'] == true){
+			// array_push($arrArgument, "Wifi");
+			$arrArgument['Wifi'] = 'Wifi';
+		}
+		if ($_POST['Piscina'] == true){
+			// array_push($arrArgument, "Piscina");
+			$arrArgument['Piscina'] = 'Piscina';
+		}
+		if ($_POST['Desayuno'] == true){
+			// array_push($arrArgument, "Desayuno");
+			$arrArgument['Desayuno'] = 'Desayuno';
+		}
+
+		$result = loadModel(MODEL_SHOP, "shop_model", "lista_services", $arrArgument);
+		echo json_encode($result);
+	}
 }

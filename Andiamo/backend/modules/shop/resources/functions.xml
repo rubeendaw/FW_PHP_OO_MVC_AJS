@@ -12,4 +12,16 @@
         <name>list_search</name>
         <uri>list_search</uri>
     </function>
+    <function>
+        <name>view_services</name>
+        <uri>view_services</uri>
+    </function>
+    <function>
+        <name>view_most_like</name>
+        <uri>view_most_like</uri>
+    </function>
+    <function>
+        <name>listar_servicios</name>
+        <uri>listar_servicios</uri>
+    </function>
 </functions>

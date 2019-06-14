@@ -22,8 +22,21 @@ class shop_model {
         return $this->bll->select_travel_BLL($arrArgument);
     
     }
+
     public function list_search($arrArgument) {
         return $this->bll->list_search_BLL($arrArgument);
+    }
+
+    public function list_services() {
+        return $this->bll->list_services_BLL();
+    }
+
+    public function list_most_like() {
+        return $this->bll->list_most_like_BLL();
+    }
+
+    public function lista_services($arrArgument) {
+        return $this->bll->lista_services_BLL($arrArgument);
     }
 
 }

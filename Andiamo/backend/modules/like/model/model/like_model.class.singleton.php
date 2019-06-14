@@ -26,4 +26,12 @@ class like_model {
         return $this->bll->insert_like_BLL($arrArgument);
     }
 
+    public function delete_like2($arrArgument){
+        return $this->bll->delete_like_BLL2($arrArgument);
+    }
+
+    public function insert_like2($arrArgument){
+        return $this->bll->insert_like_BLL2($arrArgument);
+    }
+
 }

@@ -5,7 +5,6 @@ andiamo.controller('profileCtrl', function($scope, loginService, infoUser, likes
     $scope.userInfo = infoUser;
     $scope.userLikes = likesUser;
     $scope.avatar = infoUser.avatar;
-    // console.log(infoUser);
 
     load_ubication.load_countries().then(function (response) {
         if(response.success){

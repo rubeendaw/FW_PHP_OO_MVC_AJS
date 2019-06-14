@@ -27,4 +27,17 @@ class shop_bll{
     public function list_search_BLL($arrArgument){
       return $this->dao->list_search_DAO($this->db, $arrArgument);
     }
+
+    public function list_services_BLL(){
+      return $this->dao->list_services_DAO($this->db);
+    }
+
+    public function list_most_like_BLL(){
+      return $this->dao->list_most_like_DAO($this->db);
+    }
+
+    public function lista_services_BLL($arrArgument){
+      return $this->dao->lista_services_DAO($this->db, $arrArgument);
+    }
+
 }

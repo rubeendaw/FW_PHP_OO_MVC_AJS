@@ -19,6 +19,7 @@ class controller_like {
                     'token' => $_POST['token']
                 );
                 $arrValue = loadModel(MODEL_LIKE, "like_model", "insert_like", $arrArgument);
+                loadModel(MODEL_LIKE, "like_model", "insert_like2", $arrArgument);
                 // $rdo = $daolike->insert_like($_GET['id'],$username);
             
             if (!$arrValue) {
@@ -34,6 +35,7 @@ class controller_like {
                 'token' => $_POST['token']
             );
             $arrValue = loadModel(MODEL_LIKE, "like_model", "delete_like", $arrArgument);
+            loadModel(MODEL_LIKE, "like_model", "delete_like2", $arrArgument);
             // $rdo = $daolike->insert_like($_GET['id'],$username);
         
             if (!$arrValue) {

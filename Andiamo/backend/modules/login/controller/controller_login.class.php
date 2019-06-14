@@ -152,8 +152,6 @@ class controller_login {
         }else{
             print_r("Red Social no valida.");
         }        
-            // print_r("YA REGISTRADO");
-            //login$result = loadModel(MODEL_LOGIN, "login_model", "insert_user_social", $arrArgument);
     }
     function logout(){
         $url = 'https://pruebarubeendaw.eu.auth0.com/v2/logout';

@@ -27,5 +27,13 @@ class like_bll{
     public function insert_like_BLL($arrArgument){
      return $this->dao->insert_like_DAO($this->db, $arrArgument);
      }
+
+    public function delete_like_BLL2($arrArgument){
+        return $this->dao->delete_like_DAO2($this->db, $arrArgument);
+    }
+  
+    public function insert_like_BLL2($arrArgument){
+     return $this->dao->insert_like_DAO2($this->db, $arrArgument);
+     }
   
 }

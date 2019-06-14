@@ -20,6 +20,12 @@ class like_DAO {
         return $db->ejecutar($sql);
     }
 
+    public function insert_like_DAO2($db, $arrArgument) {
+        $id = $arrArgument['id'];
+        $sql = "UPDATE travels SET likes = (likes + 1) WHERE id = $id";
+        return $db->ejecutar($sql);
+    }
+
     public function show_like_DAO($db, $arrArgument) {
 
         $sql = "SELECT id, country, destination, price FROM travels WHERE id IN (SELECT travel FROM likes WHERE username = (SELECT IDuser FROM users WHERE tokenlog = '$arrArgument'))";
@@ -32,6 +38,13 @@ class like_DAO {
         $token = $arrArgument['token'];
         $sql = "DELETE FROM likes WHERE travel = $id AND username = (SELECT IDuser FROM users WHERE tokenlog = '$token')";
         return $db->ejecutar($sql);
+    }
+
+    public function delete_like_DAO2($db, $arrArgument) {
+        $id = $arrArgument['id'];
+        $sql = "UPDATE travels SET likes = (likes - 1) WHERE id = $id";
+        return $db->ejecutar($sql);
+        // return $sql;
     }
 
 }

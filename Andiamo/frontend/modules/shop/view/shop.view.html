@@ -58,6 +58,19 @@
                   </div>
                 </div>
               </div>
+
+              <div ng-show="price_list" ng-repeat="data in precios" class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image">
+                    <img ng-click="details(data.id)" src="http://localhost/www/FW_PHP_OO_MVC_AJS/Andiamo/frontend/view/assets/images/{{data.img}}" alt="Image placeholder" class="img-fluid">
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <a clas="linkshop" ng-click="details(data.id)"><h3>{{data.country}}</h3></a>
+                    <p class="mb-0">{{data.destination}}</p>
+                    <p class="text-primary font-weight-bold">{{data.price}}</p>
+                  </div>
+                </div>
+              </div>
               
 
             </div>
@@ -98,8 +111,12 @@
             <div class="border p-4 rounded mb-4">
               <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
-                <div id="slider-range" class="border-primary"></div>
-                <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
+                <div>
+                  <rzslider ng-click="ver_precios()" rz-slider-model="slider.minValue" rz-slider-options="slider.options"></rzslider>
+              </div>
+
+                <!-- <div id="slider-range" class="border-primary"></div>
+                <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" /> -->
               </div>
 
               <div class="mb-4">
@@ -109,7 +126,7 @@
                 </label>
               </div>
 
-              <div class="mb-4">
+              <!-- <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
                 <a href="#" class="d-flex color-item align-items-center" >
                   <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red (2,429)</span>
@@ -123,7 +140,7 @@
                 <a href="#" class="d-flex color-item align-items-center" >
                   <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purple (1,075)</span>
                 </a>
-              </div>
+              </div> -->
 
             </div>
           </div>

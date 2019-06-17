@@ -9,6 +9,22 @@ andiamo.controller('shopCtrl', function($scope, all_travels, localstorageService
 	mostlikes();
   selectbox();
   
+  $scope.slider = {
+    minValue: 100,
+    maxValue: 1000,
+    options: {
+      floor: 0,
+      ceil: 1000,
+      translate: function(value) {
+        services.put('shop','slider',{'maximo':value}).then(function (response) {
+          $scope.precios = response;
+          // console.log(response);
+      });
+        return value + '€';
+      }
+    }
+  };
+  
 	$scope.pageChanged = function() {
     var startPos = ($scope.currentPage - 1) * 6;
 		$scope.filter_travels = $scope.travels.slice(startPos, startPos + 6);
@@ -17,7 +33,7 @@ andiamo.controller('shopCtrl', function($scope, all_travels, localstorageService
       function selectbox(){
         services.put('shop','view_services').then(function (response) {
           $scope.services = response;
-          console.log(response);
+          // console.log(response);
         });
       }
 
@@ -56,14 +72,13 @@ andiamo.controller('shopCtrl', function($scope, all_travels, localstorageService
       function mostlikes(){
         services.put('shop','view_most_like').then(function (response) {
           $scope.most_like = response;
-          // console.log(response);
         });
       }
 
       $scope.Search = function(){
         if ($scope.busqueda.travel) {
           travel = $scope.busqueda.travel;
-          console.log(travel);
+          // console.log(travel);
         }else if($scope.busqueda){
           travel = $scope.busqueda;
         }else{
@@ -80,12 +95,19 @@ andiamo.controller('shopCtrl', function($scope, all_travels, localstorageService
         $scope.list_services = true;
         $scope.bootpage = false;
       }
+
+      $scope.ver_precios = function(){
+        $scope.all_list = false;
+        $scope.list_services = false;
+        $scope.price_list = true;
+        $scope.bootpage = false;
+      }
       
       $scope.insertlike = function (id) {
         // console.log($scope.userInfo.avatar);
         token = localstorageService.getUsers();
 		    services.put('like','ins_like',{'id':id, 'token':token}).then(function (response) {
-          console.log(response);
+          // console.log(response);
           if (response === 'true') {
             toastr.success('LIKE Guardado', 'LIKE',{
               closeButton: true
@@ -110,7 +132,7 @@ andiamo.controller('shopCtrl', function($scope, all_travels, localstorageService
       
       $scope.details = function(id){
         services.post('shop','view_shop_details',{'id':id}).then(function (response) {
-          console.log(response);
+          // console.log(response);
           $scope.list_detail = response[0];
           $scope.detalles = true;
           $scope.myshop = false;
@@ -127,6 +149,22 @@ andiamo.controller('shopFilterCtrl', function ($scope, list_search, services) {
   $scope.myshop = true;
   mostlikes();
   selectbox();
+ 
+  $scope.slider = {
+    minValue: 100,
+    maxValue: 1000,
+    options: {
+      floor: 0,
+      ceil: 1000,
+      translate: function(value) {
+        services.put('shop','slider',{'maximo':value}).then(function (response) {
+          $scope.precios = response;
+          // console.log(response);
+      });
+        return value + '€';
+      }
+    }
+  };
 
   function selectbox(){
     services.put('shop','view_services').then(function (response) {
@@ -148,6 +186,13 @@ andiamo.controller('shopFilterCtrl', function ($scope, list_search, services) {
     $scope.myshop = true;
     $scope.bootpage = true;
   };
+
+  $scope.ver_precios = function(){
+    $scope.all_list = false;
+    $scope.list_services = false;
+    $scope.price_list = true;
+    $scope.bootpage = false;
+  }
   
   $scope.details = function(id){
     services.post('shop','view_shop_details',{'id':id}).then(function (response) {

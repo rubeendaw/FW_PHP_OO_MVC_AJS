@@ -18,10 +18,20 @@ class shop_DAO {
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
     }
+    
     function select_all_travels_DAO($db){
         $sql = "SELECT * FROM travels";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
+    }
+
+    function travels_price_DAO($db, $arrArgument){
+        // $minimo =  $arrArgument['minimo'];
+        $maximo = $arrArgument['maximo'];
+        $sql = "SELECT * FROM travels WHERE price BETWEEN 0 AND $maximo";
+        $stmt = $db->ejecutar($sql);
+        return $db->listar($stmt);
+        // return $sql;
     }
 
     function select_travel_DAO($db, $arrArgument){

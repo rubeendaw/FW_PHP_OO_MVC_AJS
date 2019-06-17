@@ -1,4 +1,5 @@
 <?php
+session_start();
 class controller_shop {
 	function __construct() {
 			$_SESSION['module'] = "shop";
@@ -54,6 +55,20 @@ class controller_shop {
 		}
 
 		$result = loadModel(MODEL_SHOP, "shop_model", "lista_services", $arrArgument);
+		echo json_encode($result);
+	}
+
+	function slider(){
+		
+		// $_SESSION["minimo"] = $_POST['minimo'];
+		// $_SESSION["maximo"] = $_POST['maximo'];
+		
+		$arrArgument = array(
+			'minimo' => $_SESSION["minimo"],
+			'maximo' => $_POST['maximo']
+		);
+
+		$result = loadModel(MODEL_SHOP, "shop_model", "travels_price", $arrArgument);
 		echo json_encode($result);
 	}
 }

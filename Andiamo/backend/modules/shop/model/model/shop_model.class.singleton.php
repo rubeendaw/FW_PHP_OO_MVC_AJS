@@ -39,4 +39,8 @@ class shop_model {
         return $this->bll->lista_services_BLL($arrArgument);
     }
 
+    public function travels_price($arrArgument) {
+        return $this->bll->travels_price_BLL($arrArgument);
+    }
+
 }

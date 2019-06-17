@@ -40,4 +40,8 @@ class shop_bll{
       return $this->dao->lista_services_DAO($this->db, $arrArgument);
     }
 
+    public function travels_price_BLL($arrArgument){
+      return $this->dao->travels_price_DAO($this->db, $arrArgument);
+    }
+
 }

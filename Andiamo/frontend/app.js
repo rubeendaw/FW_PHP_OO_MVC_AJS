@@ -1,4 +1,4 @@
-var andiamo = angular.module('andiamo', ['ngRoute', 'toastr', 'ui.bootstrap']);
+var andiamo = angular.module('andiamo', ['ngRoute', 'toastr', 'ui.bootstrap', 'rzSlider']);
 andiamo.config(['$routeProvider',
 	function ($routeProvider) {
 		$routeProvider

@@ -59,10 +59,6 @@ class controller_shop {
 	}
 
 	function slider(){
-		
-		// $_SESSION["minimo"] = $_POST['minimo'];
-		// $_SESSION["maximo"] = $_POST['maximo'];
-		
 		$arrArgument = array(
 			'minimo' => $_SESSION["minimo"],
 			'maximo' => $_POST['maximo']

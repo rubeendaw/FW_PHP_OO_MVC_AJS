@@ -26,12 +26,10 @@ class shop_DAO {
     }
 
     function travels_price_DAO($db, $arrArgument){
-        // $minimo =  $arrArgument['minimo'];
         $maximo = $arrArgument['maximo'];
         $sql = "SELECT * FROM travels WHERE price BETWEEN 0 AND $maximo";
         $stmt = $db->ejecutar($sql);
         return $db->listar($stmt);
-        // return $sql;
     }
 
     function select_travel_DAO($db, $arrArgument){
